@@ -1,0 +1,11 @@
+[
+    {
+        "id": 32434242,
+        "date": "06/11/2023",
+        "pacient_document": "93824675056",
+        "doctor_document": "CRM-SP-12345",
+        "hospital": "Santa Casa Atibaia",
+        "type": "Eletrocardiograma",
+        "description": "Eletrocardiograma para analisar estado do coração."
+    }
+]

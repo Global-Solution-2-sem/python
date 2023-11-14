@@ -24,9 +24,7 @@ def menu(pacient):
 
             print()
             print()
-            print("Deseja ver outra opção? (s)im ou (n)ão")
-            stop = input().lower()
-
+            
         elif (choice == 2):
             print()
             print("Suas consultas:")
@@ -44,12 +42,32 @@ def menu(pacient):
 
                     print()
                     print()  
+        elif (choice == 3):
+            print()
+            print("Seus exames:")
+            print()
+            data = repository.getExams(pacient["document"])
+            if(len(data) < 1):
+                print("Você não tem hisórico de consultas")
+            else:
+                for exam in data:
+                    print(f"Data da consulta: {exam["date"]}")  
+                    print(f"Nome do médico da consulta: {exam["doctor_name"]}")  
+                    print(f"Médico da consulta: {exam["doctor_document"]}")  
+                    print(f"Tipo do exame: {exam["type"]}")  
+                    print(f"Descrição: {exam["description"]}")    
+                    print(f"Hospital da consulta: {exam["hospital"]}")  
+                    print()
+                    print()
 
+        print("Deseja ver outra opção? (s)im ou (n)ão")
+        stop = input().lower()
+            
 
 def signIn():
     error = ""
     try:
-        document = input("Digite seu cpf: ")
+        document = input("Digite seu CPF: ")
         if not (re.search(r"\d", document)):
             error = "Documento pode apenas conter números"
             raise ValueError

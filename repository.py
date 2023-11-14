@@ -29,6 +29,21 @@ def getAppoitments(document):
             data.update({"doctor_name":doctor["name"]})
     return appointments
 
+def getExams(document):
+    exams = []
+    with open('./database/exams.json', 'r', encoding='UTF-8') as file:
+        exams = json.load(file)
+
+    output = []
+    for appointment in exams:
+        if(appointment["pacient_document"] == document):
+            output.append(appointment)
+
+        for data in output:
+            doctor = getDoctorByDocument(data["doctor_document"])
+            data.update({"doctor_name":doctor["name"]})
+    return exams
+
 def savePacient(pacient):
     pacients = []
     with open('./database/pacients.json', 'r', encoding='UTF-8') as file:
