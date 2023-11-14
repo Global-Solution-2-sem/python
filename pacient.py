@@ -56,7 +56,7 @@ def menu(pacient):
             print()
             data = repository.getExams(pacient["document"])
             if(len(data) < 1):
-                print("Você não tem hisórico de consultas")
+                print("Você não tem hisórico de exames")
             else:
                 for exam in data:
                     print(f"Data da consulta: {exam["date"]}")  
