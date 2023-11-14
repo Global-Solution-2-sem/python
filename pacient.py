@@ -44,7 +44,7 @@ def menu(pacient):
                 for appointment in data:
                     print(f"Data da consulta: {appointment["date"]}")  
                     print(f"Nome do médico da consulta: {appointment["doctor_name"]}")  
-                    print(f"Médico da consulta: {appointment["doctor_document"]}")    
+                    print(f"CRM do médico da consulta: {appointment["doctor_document"]}")    
                     print(f"Resumo: {appointment["checkup_summary"]}")    
                     print(f"Hospital da consulta: {appointment["hospital"]}")  
                     print()
@@ -61,7 +61,7 @@ def menu(pacient):
                 for exam in data:
                     print(f"Data da consulta: {exam["date"]}")  
                     print(f"Nome do médico da consulta: {exam["doctor_name"]}")  
-                    print(f"Médico da consulta: {exam["doctor_document"]}")  
+                    print(f"CRM do médico da exame: {exam["doctor_document"]}")  
                     print(f"Tipo do exame: {exam["type"]}")  
                     print(f"Descrição: {exam["description"]}")    
                     print(f"Hospital da consulta: {exam["hospital"]}")  
