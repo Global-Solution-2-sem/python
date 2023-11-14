@@ -14,6 +14,21 @@ def getPacientByDocument(document):
             return pacient    
     return False
 
+def getAppoitments(document):
+    appointments = []
+    with open('./database/appointments.json', 'r', encoding='UTF-8') as file:
+        appointments = json.load(file)
+
+    output = []
+    for appointment in appointments:
+        if(appointment["pacient_document"] == document):
+            output.append(appointment)
+
+        for data in output:
+            doctor = getDoctorByDocument(data["doctor_document"])
+            data.update({"doctor_name":doctor["name"]})
+    return appointments
+
 def savePacient(pacient):
     pacients = []
     with open('./database/pacients.json', 'r', encoding='UTF-8') as file:
@@ -21,7 +36,6 @@ def savePacient(pacient):
     pacients.append(pacient)
     with open('./database/pacients.json', 'w', encoding='UTF-8') as file:
         json.dump(pacients, file)  
-
 
 
 def getAllDoctors():

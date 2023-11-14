@@ -1,6 +1,51 @@
 import re
 import repository
 
+def menu(pacient):
+    stop = 's'
+    while stop != 'n':
+        print()
+        print(f"O que deseja ver, {pacient["name"]}? ")
+        print("1 - meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Sair")
+        choice = int(input())
+
+        if(choice == 1):
+            data = repository.getPacientByDocument(pacient["document"])
+
+            print()
+            print("Seus dados são:")
+
+            print(f"CPF: {data["document"]}")
+            print(f"Nome: {data["name"]}")
+            print(f"Email: {data["email"]}")
+            print(f"CEP: {data["zipCode"]}")
+            print(f"Telefone: {data["telephone"]}")
+            print(f"Data de nascimento: {data["birthDate"]}")
+
+            print()
+            print()
+            print("Deseja ver outra opção? (s)im ou (n)ão")
+            stop = input().lower()
+
+        elif (choice == 2):
+            print()
+            print("Suas consultas:")
+            print()
+            data = repository.getAppoitments(pacient["document"])
+            if(len(data) < 1):
+                print("Você não tem hisórico de consultas")
+            else:
+                for appointment in data:
+                    print(f"Data da consulta: {appointment["date"]}")  
+                    print(f"Nome do médico da consulta: {appointment["doctor_name"]}")  
+                    print(f"Médico da consulta: {appointment["doctor_document"]}")    
+                    print(f"Resumo: {appointment["checkup_summary"]}")    
+                    print(f"Hospital da consulta: {appointment["hospital"]}")  
+
+                    print()
+                    print()  
+
+
 def signIn():
     error = ""
     try:
@@ -18,9 +63,7 @@ def signIn():
             if not(pacientExists["password"] == password):
                 print("Documento ou senha inválido!")
             else:
-                print("login aproved")        
-        
-
+                menu(pacientExists)       
     except:
         print(error)
 
@@ -71,15 +114,14 @@ def signUp():
                 "birthDate": birthDate
             }
             repository.savePacient(pacient)
+            menu(pacient)
         else:
             print("Documento já utilizado!")
     except:
         print(error)    
 
 
-
-
-print("---------------------------------- Bem vindo ao App ----------------------------------")
+print("---------------------------------- Bem vindo, Paciente ----------------------------------")
 print()
 
 print("Já possui uma conta? Digite 1 para entrar ou 2 para criar uma nova conta")

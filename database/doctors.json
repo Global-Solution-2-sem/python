@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "document": "CRM-SP-12345",
+        "name": "Ricardo de Castro Marques",
+        "email": "ricardo@ricardo",
+        "telephone": "11983108219",
+        "zipCode": "12949062",
+        "password": "senha",
+        "birthDate": "02/01/1971"
+    }
+]

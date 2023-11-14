@@ -1,0 +1,10 @@
+[
+    {
+        "id": 129866734,
+        "doctor_document": "CRM-SP-12345",
+        "pacient_document": "93824675056",
+        "date": "14/11/23",
+        "checkup_summary": "Paciente com tosse e gartanta inflamada; Foi dado remédio para tosse.",
+        "hospital": "Santa Casa Atibaia"
+    }
+]
