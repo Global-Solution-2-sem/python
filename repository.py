@@ -89,3 +89,13 @@ def saveDoctor(pacient):
     doctors.append(pacient)
     with open('./database/doctors.json', 'w', encoding='UTF-8') as file:
         json.dump(doctors, file)  
+
+def saveAppoitment(appointment):
+    appointments = []
+    with open('./database/appointments.json', 'r', encoding='UTF-8') as file:
+        appointments = json.load(file) 
+    appointments.append(appointment)
+    with open('./database/appointments.json', 'w', encoding='UTF-8') as file:
+        json.dump(appointments, file)  
+
+

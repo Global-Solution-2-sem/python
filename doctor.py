@@ -1,5 +1,39 @@
+from datetime import datetime
 import re
+import uuid
 import repository
+
+def menu(doctor):
+
+    stop = 's'
+    while stop != 'n':
+        print()
+        print(f"O que deseja ver, {doctor["name"]}?")
+        print("1 - Realiazar consulta\n2 - Realizar de exame\n3 - Prescrever medicações\n4 - Sair")
+        choice = int(input())
+
+        if(choice == 1):
+            pacientDocument = input("Qual o documento do paciente?: ")
+
+            sumarry = input("Qual foi o resumo da consulta?: ")
+
+            hospital = input("Em qual hospital que foi realizada a consulta?: ")
+            
+            today = datetime.now()
+            
+            todayFortated = today.strftime("%d/%m/%Y")
+
+            appointment = {
+                "id": str(uuid.uuid4()),
+                "doctor_document": doctor["document"],
+                "pacient_document": pacientDocument,
+                "checkup_summary": sumarry,
+                "hospital": hospital,
+                "date": todayFortated
+            }
+
+            repository.saveAppoitment(appointment)
+
 
 def signIn():
     error = ""
@@ -18,7 +52,7 @@ def signIn():
             if not(doctorExists["password"] == password):
                 print("Documento ou senha inválido!")
             else:
-                print("login aproved")        
+                menu(doctorExists)       
     except:
         print(error)
 
@@ -62,6 +96,7 @@ def signUp():
                 "birthDate": birthDate
             }
             repository.saveDoctor(doctor)
+            menu(doctor)
         else:
             print("Documento já utilizado!")
     except:
