@@ -107,5 +107,13 @@ def saveExam(exam):
     with open('./database/exams.json', 'w', encoding='UTF-8') as file:
         json.dump(exams, file)  
 
+def savePrescription(prescription):
+    prescriptions = []
+    with open('./database/prescriptions.json', 'r', encoding='UTF-8') as file:
+        prescriptions = json.load(file) 
+    prescriptions.append(prescription)
+    with open('./database/prescriptions.json', 'w', encoding='UTF-8') as file:
+        json.dump(prescriptions, file)
+
 
 

@@ -62,6 +62,31 @@ def menu(doctor):
 
             repository.saveExam(exam)
 
+        elif (choice == 3):
+            print()   
+
+            pacientDocument = input("Qual o documento do paciente?: ")
+
+            startDate = input("Data de inicio para tomar a medicação?: (00/00/000) ") 
+
+            endDate = input("Data de final para tomar a medicação?: (00/00/000) ") 
+            
+            medicine = input("Qual o medicamento?: ")
+
+            activePrinciple = input("Qual o princípio ativo do medicamento?: ")
+
+            prescription = {
+                "id": str(uuid.uuid4()),
+                "doctor_document": doctor["document"],
+                "pacient_document": pacientDocument,
+                "start_date": startDate,
+                "end_date": endDate,
+                "medicine": medicine,
+                "active_principle": activePrinciple
+            }
+
+            repository.savePrescription(prescription) 
+
 
 def signIn():
     error = ""
