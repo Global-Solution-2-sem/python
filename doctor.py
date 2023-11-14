@@ -3,6 +3,13 @@ import re
 import uuid
 import repository
 
+def calculateDuration(startDate, endDate):
+    dateFormat = "%d/%m/%Y"
+
+    dateDifference = datetime.strptime(endDate, dateFormat) - datetime.strptime(startDate, dateFormat) 
+
+    return dateDifference.days
+
 def menu(doctor):
     stop = 's'
     while stop != 'n':
@@ -128,6 +135,24 @@ def menu(doctor):
                     print()
                     print()
 
+        elif (choice == 6):
+            print()
+            pacientDocument = input("Qual o documento do paciente?: ")
+            print()
+            data = repository.getPrescriptions(pacientDocument)
+            if(len(data) < 1):
+                print("O paciente não tem hisórico de medicações")
+            else:
+                for prescription in data:
+                    print(f"Data de inicio da medicação: {prescription["start_date"]}")  
+                    print(f"Data de fim da medicação: {prescription["end_date"]}")  
+                    print(f"Duração: {calculateDuration(prescription["start_date"],prescription["end_date"])} dias")
+                    print(f"Nome do médico: {prescription["doctor_name"]}")  
+                    print(f"CRM do médico: {prescription["doctor_document"]}")    
+                    print(f"Medicação: {prescription["medicine"]}")    
+                    print(f"Princípio ativo: {prescription["active_principle"]}")  
+                    print()
+                    print()  
 
         print("Deseja ver outra opção? (s)im ou (n)ão")
         stop = input().lower()
