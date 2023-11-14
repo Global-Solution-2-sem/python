@@ -8,7 +8,15 @@ def menu(doctor):
     while stop != 'n':
         print()
         print(f"O que deseja ver, {doctor["name"]}?")
-        print("1 - Realiazar consulta\n2 - Realizar exame\n3 - Prescrever medicações\n4 - Sair")
+        print("""
+              1 - Realiazar consulta\n
+              2 - Realizar exame\n
+              3 - Prescrever medicações\n
+              4 - Veriricar consultas do paciente\n 
+              5 - Veiricar exames do paciente\n
+              6 - Vericiar medicações do paciente\n
+              7 - Sair
+            """)
         choice = int(input())
 
         if(choice == 1):
@@ -86,6 +94,26 @@ def menu(doctor):
             }
 
             repository.savePrescription(prescription) 
+
+        elif (choice == 4):
+            print()
+            pacientDocument = input("Qual o documento do paciente?: ")
+            data = repository.getAppoitments(pacientDocument)
+            if(len(data) < 1):
+                print("O paciente não tem hisórico de consultas")
+            else:
+                for appointment in data:
+                    print(f"Data da consulta: {appointment["date"]}")  
+                    print(f"Nome do médico da consulta: {appointment["doctor_name"]}")  
+                    print(f"Médico da consulta: {appointment["doctor_document"]}")    
+                    print(f"Resumo: {appointment["checkup_summary"]}")    
+                    print(f"Hospital da consulta: {appointment["hospital"]}")  
+                    print()
+                    print()  
+        print("Deseja ver outra opção? (s)im ou (n)ão")
+        stop = input().lower()
+
+
 
 
 def signIn():
