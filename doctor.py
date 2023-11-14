@@ -105,11 +105,30 @@ def menu(doctor):
                 for appointment in data:
                     print(f"Data da consulta: {appointment["date"]}")  
                     print(f"Nome do médico da consulta: {appointment["doctor_name"]}")  
-                    print(f"Médico da consulta: {appointment["doctor_document"]}")    
+                    print(f"CRM do médico: {appointment["doctor_document"]}")    
                     print(f"Resumo: {appointment["checkup_summary"]}")    
                     print(f"Hospital da consulta: {appointment["hospital"]}")  
                     print()
                     print()  
+
+        elif (choice == 5):
+            print()
+            pacientDocument = input("Qual o documento do paciente?: ")
+            data = repository.getExams(pacientDocument)
+            if(len(data) < 1):
+                print("O paciente não tem hisórico de exames")
+            else:
+                for exam in data:
+                    print(f"Data da consulta: {exam["date"]}")  
+                    print(f"Nome do médico do exame: {exam["doctor_name"]}")  
+                    print(f"CRM do médico: {exam["doctor_document"]}")  
+                    print(f"Tipo do exame: {exam["type"]}")  
+                    print(f"Descrição: {exam["description"]}")    
+                    print(f"Hospital da consulta: {exam["hospital"]}")  
+                    print()
+                    print()
+
+
         print("Deseja ver outra opção? (s)im ou (n)ão")
         stop = input().lower()
 
