@@ -99,3 +99,13 @@ def saveAppoitment(appointment):
         json.dump(appointments, file)  
 
 
+def saveExam(exam):
+    exams = []
+    with open('./database/exams.json', 'r', encoding='UTF-8') as file:
+        exams = json.load(file) 
+    exams.append(exam)
+    with open('./database/exams.json', 'w', encoding='UTF-8') as file:
+        json.dump(exams, file)  
+
+
+

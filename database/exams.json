@@ -6,6 +6,15 @@
         "doctor_document": "CRM-SP-12345",
         "hospital": "Santa Casa Atibaia",
         "type": "Eletrocardiograma",
-        "description": "Eletrocardiograma para analisar estado do coração."
+        "description": "Eletrocardiograma para analisar estado do cora\u00e7\u00e3o."
+    },
+    {
+        "id": "894f58fc-fcb5-4bc1-9430-c45d4c7afeae",
+        "doctor_document": "CRM-SP-12345",
+        "pacient_document": "12345678910",
+        "type": "Hemograma",
+        "description": "Exame de sangue padr\u00e3o.",
+        "hospital": "Albert Einstein",
+        "date": "14/11/2023"
     }
 ]

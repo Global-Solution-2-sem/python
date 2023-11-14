@@ -4,15 +4,16 @@ import uuid
 import repository
 
 def menu(doctor):
-
     stop = 's'
     while stop != 'n':
         print()
         print(f"O que deseja ver, {doctor["name"]}?")
-        print("1 - Realiazar consulta\n2 - Realizar de exame\n3 - Prescrever medicações\n4 - Sair")
+        print("1 - Realiazar consulta\n2 - Realizar exame\n3 - Prescrever medicações\n4 - Sair")
         choice = int(input())
 
         if(choice == 1):
+            print()
+
             pacientDocument = input("Qual o documento do paciente?: ")
 
             sumarry = input("Qual foi o resumo da consulta?: ")
@@ -33,6 +34,33 @@ def menu(doctor):
             }
 
             repository.saveAppoitment(appointment)
+        
+        elif (choice == 2):
+            print()
+
+            pacientDocument = input("Qual o documento do paciente?: ")
+
+            type = input("Qual tipo do exame?: ") 
+
+            description = input("Qual a descrição do exame?:" )
+            
+            hospital = input("Em qual hospital que foi realizada a consulta?: ")
+            
+            today = datetime.now()
+            
+            todayFortated = today.strftime("%d/%m/%Y")
+
+            exam = {
+                "id": str(uuid.uuid4()),
+                "doctor_document": doctor["document"],
+                "pacient_document": pacientDocument,
+                "type": type,
+                "description": description,
+                "hospital": hospital,
+                "date": todayFortated
+            }
+
+            repository.saveExam(exam)
 
 
 def signIn():
