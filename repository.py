@@ -42,7 +42,22 @@ def getExams(document):
         for data in output:
             doctor = getDoctorByDocument(data["doctor_document"])
             data.update({"doctor_name":doctor["name"]})
-    return exams
+    return output
+
+def getPrescriptions(document):
+    prescriptions = []
+    with open('./database/prescriptions.json', 'r', encoding='UTF-8') as file:
+        prescriptions = json.load(file)
+
+    output = []
+    for prescription in prescriptions:
+        if(prescription["pacient_document"] == document):
+            output.append(prescription)
+
+        for data in output:
+            doctor = getDoctorByDocument(data["doctor_document"])
+            data.update({"doctor_name":doctor["name"]})
+    return output
 
 def savePacient(pacient):
     pacients = []

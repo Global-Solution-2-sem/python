@@ -6,7 +6,7 @@ def menu(pacient):
     while stop != 'n':
         print()
         print(f"O que deseja ver, {pacient["name"]}? ")
-        print("1 - meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Sair")
+        print("1 - Meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Sair")
         choice = int(input())
 
         if(choice == 1):
@@ -21,7 +21,6 @@ def menu(pacient):
             print(f"CEP: {data["zipCode"]}")
             print(f"Telefone: {data["telephone"]}")
             print(f"Data de nascimento: {data["birthDate"]}")
-
             print()
             print()
             
@@ -39,9 +38,9 @@ def menu(pacient):
                     print(f"Médico da consulta: {appointment["doctor_document"]}")    
                     print(f"Resumo: {appointment["checkup_summary"]}")    
                     print(f"Hospital da consulta: {appointment["hospital"]}")  
-
                     print()
                     print()  
+
         elif (choice == 3):
             print()
             print("Seus exames:")
@@ -60,8 +59,31 @@ def menu(pacient):
                     print()
                     print()
 
+        elif (choice == 4):
+            print()
+            print("Seus Medicamentos:")
+            print()
+            data = repository.getPrescriptions(pacient["document"])
+            if(len(data) < 1):
+                print("Você não tem hisórico de medicações")
+            else:
+                for prescription in data:
+                    print(f"Data de inicio da medicação: {prescription["start_date"]}")  
+                    print(f"Data de fim da medicação: {prescription["end_date"]}")  
+                    #calculate duration
+                    print(f"Nome do médico: {prescription["doctor_name"]}")  
+                    print(f"CRM do médico: {prescription["doctor_document"]}")    
+                    print(f"Medicação: {prescription["medicine"]}")    
+                    print(f"Princípio ativo: {prescription["active_principle"]}")  
+
+                    print()
+                    print()  
+        elif (choice == 5):
+            break
+        
         print("Deseja ver outra opção? (s)im ou (n)ão")
         stop = input().lower()
+
             
 
 def signIn():
