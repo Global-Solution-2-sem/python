@@ -1,5 +1,14 @@
+from datetime import datetime
 import re
 import repository
+
+
+def calculateDuration(startDate, endDate):
+    dateFormat = "%d/%m/%Y"
+
+    dateDifference = datetime.strptime(endDate, dateFormat) - datetime.strptime(startDate, dateFormat) 
+
+    return dateDifference.days
 
 def menu(pacient):
     stop = 's'
@@ -70,7 +79,7 @@ def menu(pacient):
                 for prescription in data:
                     print(f"Data de inicio da medicação: {prescription["start_date"]}")  
                     print(f"Data de fim da medicação: {prescription["end_date"]}")  
-                    #calculate duration
+                    print(f"Duração: {calculateDuration(prescription["start_date"],prescription["end_date"])} dias")
                     print(f"Nome do médico: {prescription["doctor_name"]}")  
                     print(f"CRM do médico: {prescription["doctor_document"]}")    
                     print(f"Medicação: {prescription["medicine"]}")    

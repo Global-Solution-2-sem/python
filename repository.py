@@ -72,7 +72,6 @@ def getAllDoctors():
     with open('./database/doctors.json', 'r', encoding='UTF-8') as file:
         return json.load(file)
  
-
 def getDoctorByDocument(document):
     doctors = []
     with open('./database/doctors.json', 'r', encoding='UTF-8') as file:
