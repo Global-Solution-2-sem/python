@@ -32,6 +32,25 @@ def menu(pacient):
             print(f"Data de nascimento: {data["birthDate"]}")
             print()
             print()
+
+            print("Deseja completar o seu cadastro para facilidar as consultas médicas? (s)im e (n)ao ")
+            compledSignUp = input()
+
+            if(compledSignUp == 's'):
+                bloodType = input("Qual seu tipo sanguíneo? ")
+
+                existingIllnesses = input("Você possui alguma doença pré-existente? ")
+
+                medicineAllergy = input("Você é alérgico a algum medicamento? :")
+
+                allergy = input("Você possui alergia? ")
+
+                data.update({"blood_type": bloodType})
+                data.update({"existing_illnesses": existingIllnesses})
+                data.update({"medicine_allergy": medicineAllergy})
+                data.update({"allergy": allergy})
+
+                repository.updatePacient(data)
             
         elif (choice == 2):
             print()
@@ -151,6 +170,9 @@ def signUp():
             error = "Data de nascimento no formato inválido!"
             raise ValueError
         
+        gender = input("Você é homem ou mulher? (M) - Mulher e (H) - Homem ")
+        
+        
         pacientExist = repository.getPacientByDocument(document)
         if(pacientExist == False):
             pacient = {
@@ -160,7 +182,8 @@ def signUp():
                 "telephone": telephone,
                 "zipCode": zipCode,
                 "password": password,
-                "birthDate": birthDate
+                "birthDate": birthDate,
+                "gender": gender
             }
             repository.savePacient(pacient)
             menu(pacient)

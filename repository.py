@@ -67,6 +67,18 @@ def savePacient(pacient):
     with open('./database/pacients.json', 'w', encoding='UTF-8') as file:
         json.dump(pacients, file)  
 
+def updatePacient(pacient):
+    pacients = []
+    with open('./database/pacients.json', 'r', encoding='UTF-8') as file:
+        pacients = json.load(file)
+    for i in range(len(pacients)):
+        if(pacients[i]["document"] == pacient["document"]):
+            pacients[i] = pacient
+            break
+    else:
+        print("Id do paciente não encontado")
+    with open('./database/pacients.json', 'w', encoding='UTF-8') as file:
+        json.dump(pacients, file)    
 
 def getAllDoctors():
     with open('./database/doctors.json', 'r', encoding='UTF-8') as file:

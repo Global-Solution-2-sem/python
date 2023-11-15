@@ -6,6 +6,10 @@
         "telephone": "11974146507",
         "zipCode": "04182135",
         "password": "senha",
-        "birthDate": "06/11/2004"
+        "birthDate": "06/11/2004",
+        "blood_type": "A+",
+        "existing_illnesses": "Diabete",
+        "medicine_allergy": "Nao",
+        "allergy": "Rinite alergica"
     }
 ]
