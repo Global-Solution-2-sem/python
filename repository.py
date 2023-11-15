@@ -150,5 +150,10 @@ def savePrescription(prescription):
     with open('./database/prescriptions.json', 'w', encoding='UTF-8') as file:
         json.dump(prescriptions, file)
 
-
-
+def saveSurgery(surgery):
+    surgeries = []
+    with open('./database/surgeries.json', 'r', encoding='UTF-8') as file:
+        surgeries = json.load(file) 
+    surgeries.append(surgery)
+    with open('./database/surgeries.json', 'w', encoding='UTF-8') as file:
+        json.dump(surgeries, file)

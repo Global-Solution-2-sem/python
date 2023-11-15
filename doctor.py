@@ -16,13 +16,15 @@ def menu(doctor):
         print()
         print(f"O que deseja ver, {doctor["name"]}?")
         print("""
-              1 - Realiazar consulta\n
-              2 - Realizar exame\n
-              3 - Prescrever medicações\n
-              4 - Veriricar consultas do paciente\n 
-              5 - Veiricar exames do paciente\n
-              6 - Vericiar medicações do paciente\n
-              7 - Sair
+                1 - Realiazar consulta\n
+                2 - Realizar exame\n
+                3 - Prescrever medicações\n
+                4 - Realizar Cirurgia\n
+                5 - Veriricar consultas do paciente\n 
+                6 - Veiricar exames do paciente\n
+                7 - Vericiar medicações do paciente\n
+                8 - Verificar as cirurgias do paciente
+                9 - Sair
             """)
         choice = int(input())
 
@@ -103,6 +105,25 @@ def menu(doctor):
             repository.savePrescription(prescription) 
 
         elif (choice == 4):
+            date = input("Qual a data da cirurgia? (00/00/0000) ")
+
+            pacientDocument = input("Qual o documento do paciente?: ")
+            
+            name = input("Qual a cirurgia? ")
+
+            reason = input("Qual a razão da cirurgia? ")
+
+            surgery = {
+                "id": str(uuid.uuid4()),
+                "name": name,
+                "date": date,
+                "reason": reason,
+                "doctor_document": doctor["document"],
+                "pacient_document": pacientDocument
+            }
+            repository.saveSurgery(surgery)
+        
+        elif (choice == 5):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
             data = repository.getAppoitments(pacientDocument)
@@ -118,7 +139,7 @@ def menu(doctor):
                     print()
                     print()  
 
-        elif (choice == 5):
+        elif (choice == 6):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
             data = repository.getExams(pacientDocument)
@@ -135,7 +156,7 @@ def menu(doctor):
                     print()
                     print()
 
-        elif (choice == 6):
+        elif (choice == 7):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
             print()
@@ -154,8 +175,15 @@ def menu(doctor):
                     print()
                     print()  
 
+       
+
+        elif (choice == 9):
+            break
+        
         print("Deseja ver outra opção? (s)im ou (n)ão")
         stop = input().lower()
+
+        
 
 
 
