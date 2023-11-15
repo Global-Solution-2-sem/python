@@ -23,7 +23,7 @@ def menu(doctor):
                 5 - Veriricar consultas do paciente\n 
                 6 - Veiricar exames do paciente\n
                 7 - Vericiar medicações do paciente\n
-                8 - Verificar as cirurgias do paciente
+                8 - Verificar as cirurgias do paciente\n
                 9 - Sair
             """)
         choice = int(input())
@@ -113,13 +113,16 @@ def menu(doctor):
 
             reason = input("Qual a razão da cirurgia? ")
 
+            hospital = input("Em qual hospital foi realizada a cirurgia? ")
+
             surgery = {
                 "id": str(uuid.uuid4()),
                 "name": name,
                 "date": date,
                 "reason": reason,
                 "doctor_document": doctor["document"],
-                "pacient_document": pacientDocument
+                "pacient_document": pacientDocument,
+                "hospital": hospital
             }
             repository.saveSurgery(surgery)
         
@@ -175,7 +178,22 @@ def menu(doctor):
                     print()
                     print()  
 
-       
+        elif (choice == 8):
+            print()
+            pacientDocument = input("Qual o documento do paciente?: ")
+            data = repository.getSurgeries(pacientDocument)
+            if(len(data) < 1):
+                print("O paciente não tem hisórico de exames")
+            else:
+                for surgery in data:
+                    print(f"Data da consulta: {surgery["date"]}")  
+                    print(f"Nome do médico do exame: {surgery["doctor_name"]}")  
+                    print(f"CRM do médico: {surgery["doctor_document"]}")  
+                    print(f"Cirurgia de : {surgery["name"]}")  
+                    print(f"Razão da cirurgia: {surgery["reason"]}")    
+                    print(f"Hospital da cirurgia: {surgery["hospital"]}")  
+                    print()
+                    print()
 
         elif (choice == 9):
             break

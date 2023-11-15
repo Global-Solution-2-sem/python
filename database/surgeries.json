@@ -5,7 +5,8 @@
         "name": "vasectomia",
         "reason": "cirurgia de vasectomia",
         "pacient_document": "12345678910",
-        "doctor_document": "CRM-SP-12345"
+        "doctor_document": "CRM-SP-12345",
+        "hospital": "Santa Lusia"
     },
     {
         "id": "d25bb966-5d60-4e47-91b1-ffa6612b6285",
@@ -13,6 +14,7 @@
         "date": "15/11/2023",
         "reason": "Dores altas na regial inguinal",
         "doctor_document": "CRM-SP-12345",
-        "pacient_document": "12345678910"
+        "pacient_document": "12345678910",
+        "hospital": "São Luis"
     }
 ]
