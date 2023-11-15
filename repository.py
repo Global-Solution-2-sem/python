@@ -59,6 +59,21 @@ def getPrescriptions(document):
             data.update({"doctor_name":doctor["name"]})
     return output
 
+def getSurgeries(document):
+    surgeries = []
+    with open('./database/surgeries.json', 'r', encoding='UTF-8') as file:
+        surgeries = json.load(file)
+
+    output = []
+    for surgerie in surgeries:
+        if(surgerie["pacient_document"] == document):
+            output.append(surgerie)
+
+        for data in output:
+            doctor = getDoctorByDocument(data["doctor_document"])
+            data.update({"doctor_name":doctor["name"]})
+    return output  
+
 def savePacient(pacient):
     pacients = []
     with open('./database/pacients.json', 'r', encoding='UTF-8') as file:
@@ -118,7 +133,6 @@ def saveAppoitment(appointment):
     appointments.append(appointment)
     with open('./database/appointments.json', 'w', encoding='UTF-8') as file:
         json.dump(appointments, file)  
-
 
 def saveExam(exam):
     exams = []

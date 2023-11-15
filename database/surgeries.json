@@ -1,0 +1,10 @@
+[
+    {
+        "id": "72d17c55-52d8-4b3a-a166-1cea49c9ebfa",
+        "date": "10/11/2023",
+        "name": "vasectomia",
+        "reason": "cirurgia de vasectomia",
+        "pacient_document": "12345678910",
+        "doctor_document": "CRM-SP-12345"
+    }
+]

@@ -16,7 +16,7 @@ def menu(pacient):
     while stop != 'n':
         print()
         print(f"O que deseja ver, {pacient["name"]}? ")
-        print("1 - Meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Cadastrar parentes\n6 - Sair")
+        print("1 - Meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Histórico de cirurgias\n6 - Cadastrar parentes\n7 - Sair")
         choice = int(input())
 
         if(choice == 1):
@@ -107,7 +107,23 @@ def menu(pacient):
 
                     print()
                     print()  
+
         elif (choice == 5):
+            data = repository.getSurgeries(pacient["document"])
+            if(len(data) < 1):
+                print("Você não tem hisórico de Cirurgua")
+            else:
+                for surgery in data:
+                    print(f"Data da cirurgia: {surgery["date"]}")  
+                    print(f"Nome do médico da consulta: {surgery["doctor_name"]}")  
+                    print(f"CRM do médico da consulta: {surgery["doctor_document"]}")   
+                    print(f"Cirurgia de: {surgery["name"]}") 
+                    print(f"Motivo: {surgery["reason"]}")    
+                    print(f"Hospital da cirurgia: {surgery["hospital"]}")  
+                    print()
+                    print()
+
+        elif (choice == 6):
             data = repository.getPacientByDocument(pacient["document"])  
             relatedDocument = input("Digite o CPF do seu parente: ")
             kinshipLevel = input("Qual o nivel de parentesco? ")
@@ -120,8 +136,8 @@ def menu(pacient):
             }
 
             repository.saveKinship(kinship)
-
-        elif (choice == 6):
+        
+        elif (choice == 7):
             break
         
         print("Deseja ver outra opção? (s)im ou (n)ão")
