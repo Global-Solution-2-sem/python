@@ -76,9 +76,18 @@ def updatePacient(pacient):
             pacients[i] = pacient
             break
     else:
-        print("Id do paciente não encontado")
+        print("CPF do paciente não encontado")
     with open('./database/pacients.json', 'w', encoding='UTF-8') as file:
         json.dump(pacients, file)    
+
+def saveKinship(kinship):
+    kinships = []
+    with open('./database/kinships.json', 'r', encoding='UTF-8') as file:
+        kinships = json.load(file)
+    kinships.append(kinship)
+    with open('./database/kinships.json', 'w', encoding='UTF-8') as file:
+        json.dump(kinships, file) 
+
 
 def getAllDoctors():
     with open('./database/doctors.json', 'r', encoding='UTF-8') as file:

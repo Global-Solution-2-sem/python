@@ -1,6 +1,7 @@
 from datetime import datetime
 import re
 import repository
+import uuid
 
 
 def calculateDuration(startDate, endDate):
@@ -15,7 +16,7 @@ def menu(pacient):
     while stop != 'n':
         print()
         print(f"O que deseja ver, {pacient["name"]}? ")
-        print("1 - Meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Sair")
+        print("1 - Meus dados\n2 - Histórico de consultas\n3 - Histórico de exames\n4 - Histórico de medicações\n5 - Cadastrar parentes\n6 - Sair")
         choice = int(input())
 
         if(choice == 1):
@@ -107,6 +108,20 @@ def menu(pacient):
                     print()
                     print()  
         elif (choice == 5):
+            data = repository.getPacientByDocument(pacient["document"])  
+            relatedDocument = input("Digite o CPF do seu parente: ")
+            kinshipLevel = input("Qual o nivel de parentesco? ")
+
+            kinship = {
+                "id": str(uuid.uuid4()),
+                "document_requester": data["document"],
+                "related_document": relatedDocument,
+                "kinship_level": kinshipLevel
+            }
+
+            repository.saveKinship(kinship)
+
+        elif (choice == 6):
             break
         
         print("Deseja ver outra opção? (s)im ou (n)ão")
