@@ -202,10 +202,6 @@ def menu(doctor):
         stop = input().lower()
 
         
-
-
-
-
 def signIn():
     error = ""
     try:

@@ -11,5 +11,19 @@
         "existing_illnesses": "Diabete",
         "medicine_allergy": "Nao",
         "allergy": "Rinite alergica"
+    },
+    {
+        "document": "55703212412",
+        "name": "A\u00e7ussena Macedo",
+        "email": "sussu@sussu.com",
+        "telephone": "11986754321",
+        "zipCode": "04182135",
+        "password": "senha",
+        "birthDate": "17/12/2004",
+        "gender": "m",
+        "blood_type": "O-",
+        "existing_illnesses": "Asma",
+        "medicine_allergy": "Penicilina",
+        "allergy": "Poeira"
     }
 ]

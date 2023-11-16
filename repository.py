@@ -21,13 +21,12 @@ def getAppoitments(document):
 
     output = []
     for appointment in appointments:
-        if(appointment["pacient_document"] == document):
+        if appointment["pacient_document"] == document:
+            doctor = getDoctorByDocument(appointment["doctor_document"])
+            appointment.update({"doctor_name": doctor["name"]})
             output.append(appointment)
 
-        for data in output:
-            doctor = getDoctorByDocument(data["doctor_document"])
-            data.update({"doctor_name":doctor["name"]})
-    return appointments
+    return output
 
 def getExams(document):
     exams = []
@@ -35,13 +34,12 @@ def getExams(document):
         exams = json.load(file)
 
     output = []
-    for appointment in exams:
-        if(appointment["pacient_document"] == document):
-            output.append(appointment)
+    for exam in exams:
+        if exam["pacient_document"] == document:
+            doctor = getDoctorByDocument(exam["doctor_document"])
+            exam.update({"doctor_name": doctor["name"]})
+            output.append(exam)
 
-        for data in output:
-            doctor = getDoctorByDocument(data["doctor_document"])
-            data.update({"doctor_name":doctor["name"]})
     return output
 
 def getPrescriptions(document):
@@ -51,12 +49,11 @@ def getPrescriptions(document):
 
     output = []
     for prescription in prescriptions:
-        if(prescription["pacient_document"] == document):
+        if prescription["pacient_document"] == document:
+            doctor = getDoctorByDocument(prescription["doctor_document"])
+            prescription.update({"doctor_name": doctor["name"]})
             output.append(prescription)
 
-        for data in output:
-            doctor = getDoctorByDocument(data["doctor_document"])
-            data.update({"doctor_name":doctor["name"]})
     return output
 
 def getSurgeries(document):
@@ -65,14 +62,13 @@ def getSurgeries(document):
         surgeries = json.load(file)
 
     output = []
-    for surgerie in surgeries:
-        if(surgerie["pacient_document"] == document):
-            output.append(surgerie)
+    for surgery in surgeries:
+        if surgery["pacient_document"] == document:
+            doctor = getDoctorByDocument(surgery["doctor_document"])
+            surgery.update({"doctor_name": doctor["name"]})
+            output.append(surgery)
 
-        for data in output:
-            doctor = getDoctorByDocument(data["doctor_document"])
-            data.update({"doctor_name":doctor["name"]})
-    return output  
+    return output 
 
 def savePacient(pacient):
     pacients = []
