@@ -1,6 +1,6 @@
 from datetime import datetime
 import re
-import repository
+import DAO
 import uuid
 
 
@@ -20,7 +20,7 @@ def menu(pacient):
         choice = int(input())
 
         if(choice == 1):
-            data = repository.getPacientByDocument(pacient["document"])
+            data = DAO.getPacientByDocument(pacient["document"])
 
             print()
             print("Seus dados são:")
@@ -51,13 +51,13 @@ def menu(pacient):
                 data.update({"medicine_allergy": medicineAllergy})
                 data.update({"allergy": allergy})
 
-                repository.updatePacient(data)
+                DAO.updatePacient(data)
             
         elif (choice == 2):
             print()
             print("Suas consultas:")
             print()
-            data = repository.getAppoitments(pacient["document"])
+            data = DAO.getAppoitments(pacient["document"])
             if(len(data) < 1):
                 print("Você não tem hisórico de consultas")
             else:
@@ -74,7 +74,7 @@ def menu(pacient):
             print()
             print("Seus exames:")
             print()
-            data = repository.getExams(pacient["document"])
+            data = DAO.getExams(pacient["document"])
             if(len(data) < 1):
                 print("Você não tem hisórico de exames")
             else:
@@ -92,7 +92,7 @@ def menu(pacient):
             print()
             print("Seus Medicamentos:")
             print()
-            data = repository.getPrescriptions(pacient["document"])
+            data = DAO.getPrescriptions(pacient["document"])
             if(len(data) < 1):
                 print("Você não tem hisórico de medicações")
             else:
@@ -109,7 +109,7 @@ def menu(pacient):
                     print()  
 
         elif (choice == 5):
-            data = repository.getSurgeries(pacient["document"])
+            data = DAO.getSurgeries(pacient["document"])
             if(len(data) < 1):
                 print("Você não tem hisórico de Cirurgua")
             else:
@@ -124,7 +124,7 @@ def menu(pacient):
                     print()
 
         elif (choice == 6):
-            data = repository.getPacientByDocument(pacient["document"])  
+            data = DAO.getPacientByDocument(pacient["document"])  
             relatedDocument = input("Digite o CPF do seu parente: ")
             kinshipLevel = input("Qual o nivel de parentesco? ")
 
@@ -135,7 +135,7 @@ def menu(pacient):
                 "kinship_level": kinshipLevel
             }
 
-            repository.saveKinship(kinship)
+            DAO.saveKinship(kinship)
         
         elif (choice == 7):
             break
@@ -154,7 +154,7 @@ def signIn():
             raise ValueError
         password = input("Digite sua senha: ")
     
-        pacientExists = repository.getPacientByDocument(document)
+        pacientExists = DAO.getPacientByDocument(document)
 
         if(pacientExists == False):
             print("Documento inválido!")
@@ -204,7 +204,7 @@ def signUp():
         gender = input("Você é homem ou mulher? (M) - Mulher e (H) - Homem ")
         
         
-        pacientExist = repository.getPacientByDocument(document)
+        pacientExist = DAO.getPacientByDocument(document)
         if(pacientExist == False):
             pacient = {
                 "document": document,
@@ -216,7 +216,7 @@ def signUp():
                 "birthDate": birthDate,
                 "gender": gender
             }
-            repository.savePacient(pacient)
+            DAO.savePacient(pacient)
             menu(pacient)
         else:
             print("Documento já utilizado!")

@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 import uuid
-import repository
+import DAO
 
 def calculateDuration(startDate, endDate):
     dateFormat = "%d/%m/%Y"
@@ -50,7 +50,7 @@ def menu(doctor):
                 "date": todayFortated
             }
 
-            repository.saveAppoitment(appointment)
+            DAO.saveAppoitment(appointment)
         
         elif (choice == 2):
             print()
@@ -77,7 +77,7 @@ def menu(doctor):
                 "date": todayFortated
             }
 
-            repository.saveExam(exam)
+            DAO.saveExam(exam)
 
         elif (choice == 3):
             print()   
@@ -102,7 +102,7 @@ def menu(doctor):
                 "active_principle": activePrinciple
             }
 
-            repository.savePrescription(prescription) 
+            DAO.savePrescription(prescription) 
 
         elif (choice == 4):
             date = input("Qual a data da cirurgia? (00/00/0000) ")
@@ -124,12 +124,12 @@ def menu(doctor):
                 "pacient_document": pacientDocument,
                 "hospital": hospital
             }
-            repository.saveSurgery(surgery)
+            DAO.saveSurgery(surgery)
         
         elif (choice == 5):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
-            data = repository.getAppoitments(pacientDocument)
+            data = DAO.getAppoitments(pacientDocument)
             if(len(data) < 1):
                 print("O paciente não tem hisórico de consultas")
             else:
@@ -145,7 +145,7 @@ def menu(doctor):
         elif (choice == 6):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
-            data = repository.getExams(pacientDocument)
+            data = DAO.getExams(pacientDocument)
             if(len(data) < 1):
                 print("O paciente não tem hisórico de exames")
             else:
@@ -163,7 +163,7 @@ def menu(doctor):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
             print()
-            data = repository.getPrescriptions(pacientDocument)
+            data = DAO.getPrescriptions(pacientDocument)
             if(len(data) < 1):
                 print("O paciente não tem hisórico de medicações")
             else:
@@ -181,7 +181,7 @@ def menu(doctor):
         elif (choice == 8):
             print()
             pacientDocument = input("Qual o documento do paciente?: ")
-            data = repository.getSurgeries(pacientDocument)
+            data = DAO.getSurgeries(pacientDocument)
             if(len(data) < 1):
                 print("O paciente não tem hisórico de exames")
             else:
@@ -211,7 +211,7 @@ def signIn():
             raise ValueError
         password = input("Digite sua senha: ")
     
-        doctorExists = repository.getDoctorByDocument(document)
+        doctorExists = DAO.getDoctorByDocument(document)
 
         if(doctorExists == False):
             print("Documento inválido!")
@@ -252,7 +252,7 @@ def signUp():
             error = "Data de nascimento no formato inválido!"
             raise ValueError
         
-        doctorExist = repository.getDoctorByDocument(document)
+        doctorExist = DAO.getDoctorByDocument(document)
         if(doctorExist == False):
             doctor = {
                 "document": document,
@@ -262,7 +262,7 @@ def signUp():
                 "password": password,
                 "birthDate": birthDate
             }
-            repository.saveDoctor(doctor)
+            DAO.saveDoctor(doctor)
             menu(doctor)
         else:
             print("Documento já utilizado!")
