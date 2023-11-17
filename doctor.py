@@ -16,13 +16,13 @@ def menu(doctor):
         print()
         print(f"O que deseja ver, {doctor["name"]}?")
         print("""
-                1 - Realiazar consulta\n
+                1 - Realizar consulta\n
                 2 - Realizar exame\n
                 3 - Prescrever medicações\n
                 4 - Realizar Cirurgia\n
-                5 - Veriricar consultas do paciente\n 
-                6 - Veiricar exames do paciente\n
-                7 - Vericiar medicações do paciente\n
+                5 - Verificar consultas do paciente\n 
+                6 - Verificar exames do paciente\n
+                7 - Verificar medicações do paciente\n
                 8 - Verificar as cirurgias do paciente\n
                 9 - Sair
             """)
